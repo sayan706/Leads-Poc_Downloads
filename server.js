@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 import { TextEncoder } from "util";
@@ -7,6 +8,9 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors());
+app.options("*", cors());
 
 // Init Supabase client once
 const supabase = createClient(
